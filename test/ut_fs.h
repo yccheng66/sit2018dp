@@ -85,5 +85,19 @@ TEST(fileSystem, uniformity) {
   delete hello_dot_cpp;
 }
 
+TEST(fileSystem, tree) {
+
+  Node * test_data = new Folder("./test_data");
+  Node * hello_dot_cpp = new File("./test_data/hello.cpp");
+  Node * folder_1 = new Folder("./test_data/folder_1");
+
+  test_data->add(folder_1);
+  test_data->add(hello_dot_cpp);
+
+  ASSERT_EQ(folder_1, test_data->getChild(0));
+  ASSERT_EQ(hello_dot_cpp, test_data->getChild(1));
+
+  ASSERT_ANY_THROW(hello_dot_cpp->add(folder_1));
+}
 
 #endif
