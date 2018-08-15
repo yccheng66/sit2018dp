@@ -100,4 +100,19 @@ TEST(fileSystem, tree) {
   ASSERT_ANY_THROW(hello_dot_cpp->add(folder_1));
 }
 
+TEST(fileSystem, totalSize) {
+
+  Node * test_data = new Folder("./test_data");
+  Node * hello_dot_cpp = new File("./test_data/hello.cpp");
+  Node * folder_1 = new Folder("./test_data/folder_1");
+  Node * a_dot_out = new File("./test_data/folder_1/a.out");
+
+  folder_1->add(a_dot_out);
+  test_data->add(folder_1);
+  test_data->add(hello_dot_cpp);
+
+  ASSERT_EQ(83, hello_dot_cpp->totalSize());
+  ASSERT_EQ(8528, folder_1->totalSize());
+}
+
 #endif

@@ -10,6 +10,9 @@ public:
   virtual Node * getChild(int x) {
     throw std::string("Not Allowed");
   }
+  virtual int totalSize() const {
+    return size();
+  }
 };
 
 // Create class for holding Folder information
@@ -36,6 +39,15 @@ public:
 
   Node * getChild(int i) {
     return _children[i];
+  }
+
+  int totalSize() const {
+    int total = 0;
+    for(int i=0; i<_children.size();i++) {
+      total += _children[i]->totalSize();
+    }
+    total += this->size(); // Add size of this folder onto totalSize
+    return total;
   }
 };
 
