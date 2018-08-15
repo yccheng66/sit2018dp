@@ -8,7 +8,7 @@ TEST=test
 
 all: directories $(BIN)/ut_main
 
-$(BIN)/ut_main: $(TEST)/ut_main.cpp $(TEST)/ut_fs.h
+$(BIN)/ut_main: $(TEST)/ut_main.cpp $(TEST)/ut_fs.h $(SRC)/node.h
 	$(CC) $(CFLAGS) $< -o $@ $(LIBS)
 
 directories:
