@@ -100,19 +100,37 @@ TEST(fileSystem, tree) {
   ASSERT_ANY_THROW(hello_dot_cpp->add(folder_1));
 }
 
-TEST(fileSystem, totalSize) {
+class VisitorTest : public ::testing::Test{
+  protected: // fixture
+    virtual void SetUp(){
+      test_data = new Folder("./test_data");
+      hello_dot_cpp = new File("./test_data/hello.cpp");
+      folder_1 = new Folder("./test_data/folder_1");
+      a_dot_out = new File("./test_data/folder_1/a.out");
 
-  Node * test_data = new Folder("./test_data");
-  Node * hello_dot_cpp = new File("./test_data/hello.cpp");
-  Node * folder_1 = new Folder("./test_data/folder_1");
-  Node * a_dot_out = new File("./test_data/folder_1/a.out");
+      folder_1->add(a_dot_out);
+      test_data->add(folder_1);
+      test_data->add(hello_dot_cpp);
+    }
 
-  folder_1->add(a_dot_out);
-  test_data->add(folder_1);
-  test_data->add(hello_dot_cpp);
+  virtual void TearDown() {
+    delete test_data;
+    delete hello_dot_cpp;
+    delete folder_1;
+    delete a_dot_out;
+  }
 
+    Node * test_data;
+    Node * hello_dot_cpp;
+    Node * folder_1;
+    Node * a_dot_out;
+
+};
+
+TEST_F (VisitorTest, totalSize) {
   ASSERT_EQ(83, hello_dot_cpp->totalSize());
   ASSERT_EQ(8528, folder_1->totalSize());
 }
+
 
 #endif
