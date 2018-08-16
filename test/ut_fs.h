@@ -2,6 +2,10 @@
 #define UTFS_H
 #include <sys/stat.h>
 #include "../src/node.h"
+#include "../src/file.h"
+#include "../src/folder.h"
+#include "../src/visitor.h"
+#include "../src/total_size_visitor.h"
 
 TEST(lstat, FolderThere) {
   const char * path = "./test_data";
@@ -132,5 +136,10 @@ TEST_F (VisitorTest, totalSize) {
   ASSERT_EQ(8528, folder_1->totalSize());
 }
 
-
+TEST_F (VisitorTest, totalSizeVisitor) {
+  Visitor * testVisitor = new TotalSizeVisitor;
+  hello_dot_cpp -> accept(testVisitor);
+  // int value = testVisitor -> getResult();
+  // ASSERT_EQ(83, value);
+}
 #endif
