@@ -137,9 +137,9 @@ TEST_F (VisitorTest, totalSize) {
 }
 
 TEST_F (VisitorTest, totalSizeVisitor) {
-  Visitor * testVisitor = new TotalSizeVisitor;
-  hello_dot_cpp -> accept(testVisitor);
-  // int value = testVisitor -> getResult();
-  // ASSERT_EQ(83, value);
+  TotalSizeVisitor testVisitor;
+  hello_dot_cpp -> accept(&testVisitor);
+  int value = testVisitor.getResult();
+  ASSERT_EQ(83, value);
 }
 #endif

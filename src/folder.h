@@ -3,6 +3,9 @@
 
 #include "node.h"
 // Create class for holding Folder information
+
+#include <sys/stat.h>
+
 class Folder : public Node {
 private:
   // Member data for folder size

@@ -8,9 +8,7 @@ public:
   TotalSizeVisitor() {
     _size = -1;
   }
-  void visit(File * file) {
-    _size = file -> size();
-  }
+  void visit(File * file);
   int getResult() {
     return _size;
   }

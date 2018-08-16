@@ -2,6 +2,7 @@
 #ifndef FILE_H
 #define FILE_H
 
+#include <sys/stat.h>
 #include "node.h"
 #include "total_size_visitor.h"
 

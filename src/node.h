@@ -2,12 +2,13 @@
 #define NODE_H
 
 // TO DO: refactor file 15 Aug 18
-// #include "visitor.h"
+
+#include <string>
+
 class Visitor;
 
 class Node {
 public:
-
   virtual int size() const = 0;
   virtual ~Node(){}
   virtual void add(Node * n) {
