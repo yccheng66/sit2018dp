@@ -16,7 +16,9 @@ public:
     }
     virtual void first () {_current = 0;}
     virtual void next () {_current ++;}
-    virtual bool isDone() {return _current >= _theFolder->numberOfChildren();}
+    virtual bool isDone() {
+      return _current >= _theFolder->numberOfChildren();
+    }
     virtual Node * currentItem() {
       return _theFolder->getChild(_current);
     }

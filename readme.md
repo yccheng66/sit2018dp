@@ -18,11 +18,9 @@ File systems differ in different operating systems. In this problem, we shall as
 
 ## Organizing folders and files into a tree structure and treating them uniformly from the client program with Composite
 
-## Accessing folders and files with Iterator; find folder or file by name
-
-## Adding symbolic link: Proxy
-
 ## Find by name with Visitor; additional examples of visitors
+
+## Accessing folders and files with Iterator; find folder or file by name
 
 ## The problem solved: review with basic OO principles
  - open-closed principle

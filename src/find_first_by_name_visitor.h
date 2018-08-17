@@ -18,8 +18,9 @@ public:
       return;
     }
 
-    for (int i=0; i < folder->numberOfChildren(); i++)
-      folder->getChild(i)->accept(this);
+    Iterator * it = folder->createIterator();
+    for (it->first(); !it->isDone(); it->next())
+      it->currentItem()->accept(this);
   }
 
   Node * getResult() {
