@@ -83,7 +83,9 @@ TEST(fileSystem, uniformity) {
   Node * hello_dot_cpp = new File("./test_data/hello.cpp");
 
   ASSERT_EQ(160, test_data->size());
+  ASSERT_EQ("test_data", test_data->name());
   ASSERT_EQ(83, hello_dot_cpp->size());
+  ASSERT_EQ("hello.cpp", hello_dot_cpp->name());
 
   delete test_data;
   delete hello_dot_cpp;
@@ -135,7 +137,7 @@ TEST_F (VisitorTest, totalSizeVisitor) {
   TotalSizeVisitor testVisitor, folderVisitor;
   hello_dot_cpp -> accept(&testVisitor);
   int value = testVisitor.getResult();
-  // ASSERT_EQ(83, value);
+  ASSERT_EQ(83, value);
   folder_1->accept(&folderVisitor);
   ASSERT_EQ(8528, folderVisitor.getResult());
 }

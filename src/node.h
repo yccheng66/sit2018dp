@@ -11,16 +11,23 @@ class Node {
 private:
   // Member data for file size
   int _size;
+  std::string _name;
 
 public:
   Node(const char * path) {
     struct stat st;
     stat(path, &st);
     _size = st.st_size;
+    int n = std::string(path).rfind('/');
+    _name = std::string(path).substr(n+1);
   }
 
   int size() const {
     return _size;
+  }
+
+  std::string name() const {
+    return _name;
   }
 
   virtual ~Node(){}
