@@ -5,6 +5,7 @@
 // Create class for holding Folder information
 
 #include <sys/stat.h>
+#include <vector>
 
 class Folder : public Node {
 private:
@@ -31,6 +32,10 @@ public:
     return _children[i];
   }
 
+  int numberOfChildren () const {
+    return _children.size();
+  }
+
   int totalSize() const {
     int total = 0;
     for(int i=0; i<_children.size();i++) {
@@ -41,7 +46,7 @@ public:
   }
 
   void accept(Visitor * visitor) {
-
+    visitor->visit(this);
   }
 };
 #endif

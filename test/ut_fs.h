@@ -137,9 +137,22 @@ TEST_F (VisitorTest, totalSize) {
 }
 
 TEST_F (VisitorTest, totalSizeVisitor) {
-  TotalSizeVisitor testVisitor;
+  TotalSizeVisitor testVisitor, folderVisitor;
   hello_dot_cpp -> accept(&testVisitor);
   int value = testVisitor.getResult();
   ASSERT_EQ(83, value);
+  folder_1->accept(&folderVisitor);
+  ASSERT_EQ(8528, folderVisitor.getResult());
 }
+
+// TEST_F(VisitorTest, findByNameVisitor) {
+//   FindFirstByNameVisitor tv("a.out"), tv1("folder_1"), tv2("hello.cpp");
+//   test_data->accept(&tv);
+//   ASSERT_EQ(a_dot_out, tv.getResult());
+//   test_data->accept(&tv1);
+//   ASSERT_EQ(folder_1, tv1.getResult());
+//   test_data->accept(&tv2);
+//   ASSERT_EQ(hello_dot_cpp, tv2.getResult());
+// }
+
 #endif

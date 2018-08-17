@@ -6,9 +6,10 @@
 class TotalSizeVisitor : public Visitor{
 public:
   TotalSizeVisitor() {
-    _size = -1;
+    _size = 0;
   }
   void visit(File * file);
+  void visit(Folder * folder);
   int getResult() {
     return _size;
   }
