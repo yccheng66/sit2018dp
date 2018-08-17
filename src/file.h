@@ -7,20 +7,10 @@
 #include "total_size_visitor.h"
 
 class File : public Node {
-private:
-  // Member data for file size
-  int _size;
-
 public:
-  File(const char * path) {
-    struct stat st;
-    stat(path, &st);
-    _size = st.st_size;
+  File(const char * path): Node(path) {
   }
 
-  int size() const {
-    return _size;
-  }
   void accept(Visitor * visitor) {
     visitor -> visit(this);
   }

@@ -9,19 +9,10 @@
 
 class Folder : public Node {
 private:
-  // Member data for folder size
-  int _size;
   std::vector<Node *> _children;
 
 public:
-  Folder(const char * path) {
-    struct stat st;
-    stat(path, &st);
-    _size = st.st_size;
-  }
-
-  int size() const {
-    return _size;
+  Folder(const char * path):Node(path) {
   }
 
   void add(Node * n) {
@@ -34,15 +25,6 @@ public:
 
   int numberOfChildren () const {
     return _children.size();
-  }
-
-  int totalSize() const {
-    int total = 0;
-    for(int i=0; i<_children.size();i++) {
-      total += _children[i]->totalSize();
-    }
-    total += this->size(); // Add size of this folder onto totalSize
-    return total;
   }
 
   void accept(Visitor * visitor) {
