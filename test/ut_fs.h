@@ -6,6 +6,7 @@
 #include "../src/folder.h"
 #include "../src/visitor.h"
 #include "../src/total_size_visitor.h"
+#include "../src/find_first_by_name_visitor.h"
 
 TEST(lstat, FolderThere) {
   const char * path = "./test_data";
@@ -142,14 +143,14 @@ TEST_F (VisitorTest, totalSizeVisitor) {
   ASSERT_EQ(8528, folderVisitor.getResult());
 }
 
-// TEST_F(VisitorTest, findByNameVisitor) {
-//   FindFirstByNameVisitor tv("a.out"), tv1("folder_1"), tv2("hello.cpp");
-//   test_data->accept(&tv);
-//   ASSERT_EQ(a_dot_out, tv.getResult());
-//   test_data->accept(&tv1);
-//   ASSERT_EQ(folder_1, tv1.getResult());
-//   test_data->accept(&tv2);
-//   ASSERT_EQ(hello_dot_cpp, tv2.getResult());
-// }
+TEST_F(VisitorTest, findFirstByNameVisitor) {
+  FindFirstByNameVisitor tv("a.out"), tv1("folder_1"), tv2("hello.cpp");
+  test_data->accept(&tv);
+  ASSERT_EQ(a_dot_out, tv.getResult());
+  test_data->accept(&tv1);
+  ASSERT_EQ(folder_1, tv1.getResult());
+  test_data->accept(&tv2);
+  ASSERT_EQ(hello_dot_cpp, tv2.getResult());
+}
 
 #endif
