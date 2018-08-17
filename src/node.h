@@ -4,6 +4,7 @@
 // TO DO: refactor file 15 Aug 18
 
 #include <string>
+#include "iterator.h"
 
 class Visitor;
 
@@ -40,6 +41,10 @@ public:
   }
 
   virtual void accept(Visitor * visitor) = 0;
+
+  virtual Iterator * createIterator() {
+    return new NullIterator;
+  }
 };
 
 #endif

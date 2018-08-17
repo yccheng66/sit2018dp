@@ -65,18 +65,6 @@ TEST(stat, LinkThere) {
   ASSERT_EQ(true, S_ISREG(st.st_mode));
   ASSERT_EQ(false, S_ISLNK(st.st_mode));
 }
-//
-// TEST(pathTest, LinkThere) {
-//   const char * path = "./test_data/hello";
-//   struct stat st;
-//   ASSERT_EQ(0, lstat(path, &st));
-//
-//   int n = std::string(path).rfind('/');
-//   std::string name = std::string(path).substr(n+1);
-//   std::string pathToRoot = std::string(path).substr(0, n+1);
-//   ASSERT_EQ("hello", name);
-//   ASSERT_EQ("./test_data/", pathToRoot);
-// }
 
 // Test for uniform handling of "Folder" and "File"
 TEST(fileSystem, uniformity) {
@@ -152,5 +140,19 @@ TEST_F(VisitorTest, findFirstByNameVisitor) {
   test_data->accept(&tv2);
   ASSERT_EQ(hello_dot_cpp, tv2.getResult());
 }
+
+TEST_F(VisitorTest, Iterator) {
+  Iterator * it = hello_dot_cpp->createIterator();
+  ASSERT_TRUE(it->isDone());
+  ASSERT_ANY_THROW(it->currentItem());
+  it = test_data->createIterator();
+  it->first();
+  ASSERT_EQ(folder_1, it->currentItem());
+  it->next();
+  ASSERT_EQ(hello_dot_cpp, it->currentItem());
+  it->next();
+  ASSERT_TRUE(it->isDone());
+}
+
 
 #endif
